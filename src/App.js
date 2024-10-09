@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const App = () => {
   const [count , setCount] = useState(0);
@@ -6,6 +6,16 @@ const App = () => {
   const handleClick = () => {
     setCount(count + 1);
   }
+
+  useEffect(()=>{
+    // Add a timer to increment the count every second
+    const timer = setInterval(() => {
+      setCount(count + 1);
+    }, 1000);
+
+    // Clean up the timer when the component is unmounted
+    return () => clearInterval(timer);
+  })
 
 
   return (
